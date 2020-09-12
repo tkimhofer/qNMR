@@ -17,7 +17,7 @@ collate_Bruker_MetaboliteFits(path)
 
   Excel file in *path* containing two sheets:
 
- **Sheet 1:** Quatification data, 2D matrix with rows and columns representing samples and variabels, resp.
+ **Sheet 1:** Quatification data, 2D matrix with rows and columns representing samples and variables, resp.
  
  **Sheet 2:** Dictionary fro variable/analyte mapping & technical details (measurement unit, quantification limits)
 
