@@ -1,7 +1,10 @@
 # qNMR
 Read NMR quantification data (metabolites/plasmaptrotein classes/subclasses) from research study into 2D matrix for statistical analysis
 
-### Usage: collate_Bruker_MetaboliteFits(path)
+### Usage: 
+```python
+collate_Bruker_MetaboliteFits(path)
+```
 
 #### Input: 
 
@@ -9,10 +12,8 @@ Read NMR quantification data (metabolites/plasmaptrotein classes/subclasses) fro
 
 #### Output: 
 
-  Excel file with two sheets: 
-  
+  Excel file with two sheets
     **Sheet 1: Quatification data** - 2D matrix with rows and columns representing samples and variabels, resp.
-    
     **Sheet 2: Dictionary** - Variable/analyte description amd technical details (analyte name in long format, unit of measurement, quantification limits)
 
 
