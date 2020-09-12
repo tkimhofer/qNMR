@@ -6,9 +6,12 @@ Read NMR quantification data (metabolites/plasmaptrotein classes/subclasses) fro
 collate_Bruker_MetaboliteFits(path)
 ```
 
+
 #### Input: 
 
   **path** (str) - path to directory of NMR experiments / xml quantification files ('urine_quant_report_e_ver_1_0', 'plasma_quant_report_e_ver_1_0')
+
+
 
 #### Output: 
 
