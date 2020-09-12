@@ -2,15 +2,24 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jan 29 14:32:08 2020
+@author: Torben Kimhofer, Murdoch Univeristy, Perth
+@email torben.kimhofer@murdoch.edu.au
+@version 1.3
+@license: GPL
 
-@author: TKimhofer
+Read-in NMR quantification data in xml format for statistical analysis
+
+User function: collate_Bruker_MetaboliteFits(path)
+Input: 'path' (str) - path to directory of NMR experiments / xml quantification files ('urine_quant_report_e_ver_1_0', 'plasma_quant_report_e_ver_1_0')
+Output: Excel file with two sheets: 
+    Sheet 1: Quatification data: 2D matrix with rows and columns representing samples and variabels, resp.
+    Sheet 2: Variable dictionary and technical details (analyte name in long format, unit of measurement, quantification limits)
+    
 """
 
 import glob
 import xml.etree.ElementTree as et
 import pandas as pd
-
-
 
 def list_files(path, type='urine_quant_report_e_ver_1_0'):
 #     path - list all xml files in dir and subdirs
@@ -18,9 +27,6 @@ def list_files(path, type='urine_quant_report_e_ver_1_0'):
     
     files=glob.glob(path+'/**/*'+type+'.xml', recursive=True)
     return(files)
-
-
-
 
 def extract_uquant(files):
     fil_out=list()
@@ -59,11 +65,7 @@ def extract_uquant(files):
         fil_out.append(met_out)
     return(fil_out)
 
-
-
 def create_tbl(extr, unit='mmol/L'):
-    
-
     #unit present?
     id=-1
     for un in range(2,len(extr[0][1])):
@@ -85,8 +87,6 @@ def create_tbl(extr, unit='mmol/L'):
             add.append([me[0], '-', '-', '-', ])
         
     mout=pd.DataFrame(add, columns=['ID', 'Unit', 'LOD', 'LOQ'])
-    
-    
     files=[]
     for me in extr:
         files.append(me[0][1])
@@ -103,23 +103,17 @@ def create_tbl(extr, unit='mmol/L'):
         dout.iloc[i_file]=mets
     
     return([dout, mout])
-    
 
-        
 def convertChartoFloat(instr):
     if instr.isdigit() == True:
         return float(instr)
     else: 
         return(instr)
 
-
 def collate_Bruker_MetaboliteFits(path):
-    
     rawData_ur=list_files(path, type='urine_quant_report_e_ver_1_0')
     if(len(rawData_ur)>0):
-    
         extrData=extract_uquant(rawData_ur)
-    
         tbls_mmolL=create_tbl(extrData, unit='mmol/L')
     
         # generate excel files
@@ -128,7 +122,6 @@ def collate_Bruker_MetaboliteFits(path):
         tbls_mmolL[1].to_excel(writer, sheet_name='Quant Details', index=False)    
         writer.save()
         print('Saving file '+path+'Met_fits_Urine.xlsx')
-        
         tbls_creaNorm=create_tbl(extrData, unit='mmol/mol Crea')
     
         # generate excel files
@@ -137,13 +130,11 @@ def collate_Bruker_MetaboliteFits(path):
         tbls_creaNorm[1].to_excel(writer, sheet_name='Quant Details', index=False)    
         writer.save()
         print('Saving file '+path+'Met_fits_Urine_CreaNorm.xlsx')
-    
-    
+
     rawData_pl=list_files(path, type='plasma_quant_report_e_ver_1_0')
     
     if(len(rawData_pl)>0):
         extrData=extract_uquant(rawData_pl)
-    
         tbls_mmolL=create_tbl(extrData, unit='mmol/L')
     
         # generate excel files
