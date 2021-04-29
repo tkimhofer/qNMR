@@ -1,5 +1,5 @@
 # qNMR
-Read NMR quantification data (metabolites/plasmaptrotein classes/subclasses) from research study into 2D matrix for statistical analysis
+XL parser to import Bruker IVDr absolute quantification data (metabolites/plasmaptrotein classes/subclasses) into 2D matrix for statistical evaluation.
 
 ### Usage: 
 ```python
