@@ -1,4 +1,4 @@
-m#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jan 29 14:32:08 2020
@@ -116,9 +116,6 @@ def extract_lipo(files):
             met_out.append([met_name_out, f,  out])
         fil_out.append(met_out)
     return(fil_out)
-
-
-
 
 
 def extract_uquant_b(files):

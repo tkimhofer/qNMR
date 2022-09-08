@@ -14,16 +14,11 @@ V2.9 is successor of V2.0
 Changes: 1. find resp. files by traversing directory path, 2. remove double column entries
 
 """
-
-
-
 import glob
 import xml.etree.ElementTree as et
 import pandas as pd
 import os
 import re
-
-
 
 def _list_files(path, ft='urine_quant_report_e_ver_1_0'):
 #     path - list all xml files in dir and subdirs
